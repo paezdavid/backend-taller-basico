@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+
+    h1 Hola! 
+
+    form(action="enviarDatos" method="POST")
+        input(type="text", name="nombre", placeholder="inserte su nombre")
+
+        input(type="submit", value="Enviar!") 
+    
+    h2 Datos existentes en la DB:
+
+    //- Si existen datos en la DB y estos datos llegaron al cliente...
+    if filas 
+        //- Se acceden a los datos enviados como variable "filas". "filas" es un array donde cada elemento es una objeto { nombre: "david" }
+        ul 
+            each fila in filas
+                li= fila.nombre
+                
+    //- Si no existen datos en la DB, al cliente llega un mensaje de error
+    else 
+        p #{ datosNoEncontrados }
